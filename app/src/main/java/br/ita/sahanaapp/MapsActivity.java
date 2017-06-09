@@ -13,10 +13,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-
+    float[] position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        position = getIntent().getFloatArrayExtra("position");
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -39,7 +40,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng saojose = new LatLng(-23, -46);
+        LatLng saojose = new LatLng(position[0],position[1]);
         mMap.addMarker(new MarkerOptions().position(saojose).title("Marker in São José dos Campos"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(saojose));
     }
